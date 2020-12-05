@@ -7,11 +7,12 @@ package com.code.crypt;
 
 import java.awt.Color;
 import java.util.Base64;
+import java.util.logging.*;
 import java.math.BigInteger; 
-import java.security.MessageDigest; 
-import java.security.NoSuchAlgorithmException; 
+import java.security.*;
 import com.google.common.io.BaseEncoding;
 import com.google.common.base.Charsets;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,8 @@ public class index extends javax.swing.JFrame {
     /**
      * Creates new form index
      */
+    int mouseX;
+    int mouseY;
     public index() {
         initComponents();
     }
@@ -58,8 +61,10 @@ public class index extends javax.swing.JFrame {
         caesarOutput = new javax.swing.JScrollPane();
         caesarOutputArea = new javax.swing.JTextArea();
         caesarOutputLabel = new javax.swing.JLabel();
-        caesarNav = new javax.swing.JPanel();
         encryptButton = new javax.swing.JButton();
+        caesarNav = new javax.swing.JPanel();
+        caesarNavTitle = new javax.swing.JLabel();
+        caesarTitle = new javax.swing.JLabel();
         hashingPanel = new javax.swing.JPanel();
         selectHashLabel = new javax.swing.JLabel();
         hashInput = new javax.swing.JScrollPane();
@@ -69,6 +74,7 @@ public class index extends javax.swing.JFrame {
         hashOutputArea = new javax.swing.JTextArea();
         hashOutputLabel = new javax.swing.JLabel();
         hashNav = new javax.swing.JPanel();
+        hashNavTitle = new javax.swing.JLabel();
         hashComboBox = new javax.swing.JComboBox<>();
         hashButton = new javax.swing.JButton();
         encodingPanel = new javax.swing.JPanel();
@@ -80,20 +86,31 @@ public class index extends javax.swing.JFrame {
         encodingOutputArea = new javax.swing.JTextArea();
         encodingOutputLabel = new javax.swing.JLabel();
         encodingNav = new javax.swing.JPanel();
+        encodingNavTitle = new javax.swing.JLabel();
         encodingComboBox = new javax.swing.JComboBox<>();
         encodeButton = new javax.swing.JButton();
         rsaPanel = new javax.swing.JPanel();
-        rsaPublicKey = new javax.swing.JScrollPane();
-        encodingOutputArea1 = new javax.swing.JTextArea();
-        rsaPublicKeyLabel = new javax.swing.JLabel();
-        encodingNav1 = new javax.swing.JPanel();
-        generateRsaButton = new javax.swing.JButton();
+        rsaNav = new javax.swing.JPanel();
+        encodingNavTitle1 = new javax.swing.JLabel();
+        generateRsa = new javax.swing.JButton();
+        privateKey = new javax.swing.JScrollPane();
+        privateKeyArea = new javax.swing.JTextArea();
+        rsaTitle = new javax.swing.JLabel();
+        privateKeyLabel = new javax.swing.JLabel();
+        publicKey = new javax.swing.JScrollPane();
+        publicKeyArea = new javax.swing.JTextArea();
+        publicKeyLabel = new javax.swing.JLabel();
+        rsaBitSize = new javax.swing.JComboBox<>();
+        rsaBitSizeLabel = new javax.swing.JLabel();
+        topNav = new javax.swing.JPanel();
+        exitButton = new javax.swing.JPanel();
+        maximizeButton = new javax.swing.JPanel();
+        minimizeButton = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         main.setBackground(new java.awt.Color(30, 35, 40));
@@ -301,7 +318,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(encoding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rsa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -330,19 +347,6 @@ public class index extends javax.swing.JFrame {
         caesarOutputLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         caesarOutputLabel.setText("Output");
 
-        caesarNav.setBackground(new java.awt.Color(21, 199, 203));
-
-        javax.swing.GroupLayout caesarNavLayout = new javax.swing.GroupLayout(caesarNav);
-        caesarNav.setLayout(caesarNavLayout);
-        caesarNavLayout.setHorizontalGroup(
-            caesarNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1132, Short.MAX_VALUE)
-        );
-        caesarNavLayout.setVerticalGroup(
-            caesarNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
         encryptButton.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         encryptButton.setText("Encrypt");
         encryptButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -352,15 +356,41 @@ public class index extends javax.swing.JFrame {
             }
         });
 
+        caesarNav.setBackground(new java.awt.Color(21, 199, 203));
+
+        caesarNavTitle.setFont(new java.awt.Font("Source Code Pro Medium", 1, 14)); // NOI18N
+        caesarNavTitle.setForeground(new java.awt.Color(255, 255, 255));
+        caesarNavTitle.setText("Caesar");
+
+        javax.swing.GroupLayout caesarNavLayout = new javax.swing.GroupLayout(caesarNav);
+        caesarNav.setLayout(caesarNavLayout);
+        caesarNavLayout.setHorizontalGroup(
+            caesarNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(caesarNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(caesarNavTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        caesarNavLayout.setVerticalGroup(
+            caesarNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(caesarNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(caesarNavTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
+        );
+
+        caesarTitle.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        caesarTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        caesarTitle.setText("Caesar Cipher");
+
         javax.swing.GroupLayout caesarPanelLayout = new javax.swing.GroupLayout(caesarPanel);
         caesarPanel.setLayout(caesarPanelLayout);
         caesarPanelLayout.setHorizontalGroup(
             caesarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(caesarNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(caesarPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(caesarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(caesarInput, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE)
+                    .addComponent(caesarInput, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                     .addComponent(caesarOutput)
                     .addGroup(caesarPanelLayout.createSequentialGroup()
                         .addGroup(caesarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,14 +399,18 @@ public class index extends javax.swing.JFrame {
                             .addComponent(caesarInputLabel)
                             .addComponent(caesarOutputLabel)
                             .addComponent(encryptButton))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(caesarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(caesarNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         caesarPanelLayout.setVerticalGroup(
             caesarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(caesarPanelLayout.createSequentialGroup()
                 .addComponent(caesarNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(22, 22, 22)
+                .addComponent(caesarTitle)
+                .addGap(28, 28, 28)
                 .addComponent(shiftLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(shift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,7 +424,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(caesarOutputLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(caesarOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         mainPanel.add(caesarPanel, "card2");
@@ -409,22 +443,35 @@ public class index extends javax.swing.JFrame {
 
         hashOutputArea.setColumns(20);
         hashOutputArea.setRows(5);
+        hashOutputArea.setAutoscrolls(false);
         hashOutput.setViewportView(hashOutputArea);
+        hashOutputArea.setWrapStyleWord(true);
+        hashOutputArea.setLineWrap(true);
 
         hashOutputLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         hashOutputLabel.setText("Hash value");
 
         hashNav.setBackground(new java.awt.Color(21, 199, 203));
 
+        hashNavTitle.setFont(new java.awt.Font("Source Code Pro Medium", 1, 14)); // NOI18N
+        hashNavTitle.setForeground(new java.awt.Color(255, 255, 255));
+        hashNavTitle.setText("Hash");
+
         javax.swing.GroupLayout hashNavLayout = new javax.swing.GroupLayout(hashNav);
         hashNav.setLayout(hashNavLayout);
         hashNavLayout.setHorizontalGroup(
             hashNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(hashNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hashNavTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         hashNavLayout.setVerticalGroup(
             hashNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+            .addGroup(hashNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hashNavTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
         );
 
         hashComboBox.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
@@ -452,7 +499,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(hashingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(hashingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hashInput, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE)
+                    .addComponent(hashInput, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                     .addComponent(hashOutput)
                     .addGroup(hashingPanelLayout.createSequentialGroup()
                         .addGroup(hashingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,7 +529,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(hashOutputLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hashOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         mainPanel.add(hashingPanel, "card3");
@@ -509,15 +556,25 @@ public class index extends javax.swing.JFrame {
 
         encodingNav.setBackground(new java.awt.Color(21, 199, 203));
 
+        encodingNavTitle.setFont(new java.awt.Font("Source Code Pro Medium", 1, 14)); // NOI18N
+        encodingNavTitle.setForeground(new java.awt.Color(255, 255, 255));
+        encodingNavTitle.setText("Encode");
+
         javax.swing.GroupLayout encodingNavLayout = new javax.swing.GroupLayout(encodingNav);
         encodingNav.setLayout(encodingNavLayout);
         encodingNavLayout.setHorizontalGroup(
             encodingNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(encodingNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(encodingNavTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         encodingNavLayout.setVerticalGroup(
             encodingNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, encodingNavLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(encodingNavTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         encodingComboBox.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
@@ -545,7 +602,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(encodingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(encodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(encodingInput, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE)
+                    .addComponent(encodingInput, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                     .addComponent(encodingOutput)
                     .addGroup(encodingPanelLayout.createSequentialGroup()
                         .addGroup(encodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -575,88 +632,229 @@ public class index extends javax.swing.JFrame {
                 .addComponent(encodingOutputLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(encodingOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         mainPanel.add(encodingPanel, "card4");
 
         rsaPanel.setBackground(new java.awt.Color(225, 227, 226));
-        rsaPanel.setPreferredSize(new java.awt.Dimension(720, 480));
 
-        encodingOutputArea1.setColumns(20);
-        encodingOutputArea1.setRows(5);
-        rsaPublicKey.setViewportView(encodingOutputArea1);
+        rsaNav.setBackground(new java.awt.Color(21, 199, 203));
 
-        rsaPublicKeyLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        rsaPublicKeyLabel.setText("Output");
+        encodingNavTitle1.setFont(new java.awt.Font("Source Code Pro Medium", 1, 14)); // NOI18N
+        encodingNavTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        encodingNavTitle1.setText("Encode");
 
-        encodingNav1.setBackground(new java.awt.Color(21, 199, 203));
-
-        javax.swing.GroupLayout encodingNav1Layout = new javax.swing.GroupLayout(encodingNav1);
-        encodingNav1.setLayout(encodingNav1Layout);
-        encodingNav1Layout.setHorizontalGroup(
-            encodingNav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout rsaNavLayout = new javax.swing.GroupLayout(rsaNav);
+        rsaNav.setLayout(rsaNavLayout);
+        rsaNavLayout.setHorizontalGroup(
+            rsaNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rsaNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(encodingNavTitle1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        encodingNav1Layout.setVerticalGroup(
-            encodingNav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+        rsaNavLayout.setVerticalGroup(
+            rsaNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rsaNavLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(encodingNavTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        generateRsaButton.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        generateRsaButton.setText("Encode");
-        generateRsaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        generateRsaButton.addActionListener(new java.awt.event.ActionListener() {
+        generateRsa.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        generateRsa.setText("Generate RSA key");
+        generateRsa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateRsaButtonActionPerformed(evt);
+                generateRsaActionPerformed(evt);
             }
         });
+
+        privateKeyArea.setColumns(20);
+        privateKeyArea.setRows(5);
+        privateKeyArea.setAutoscrolls(false);
+        privateKey.setViewportView(privateKeyArea);
+
+        rsaTitle.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        rsaTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rsaTitle.setText("RSA Key Pair (PEM format)");
+
+        privateKeyLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        privateKeyLabel.setText("Private Key");
+
+        publicKeyArea.setColumns(20);
+        publicKeyArea.setRows(5);
+        publicKey.setViewportView(publicKeyArea);
+
+        publicKeyLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        publicKeyLabel.setText("Public Key");
+
+        rsaBitSize.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        rsaBitSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1024-bit", "2048-bit", "4096-bit" }));
+
+        rsaBitSizeLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        rsaBitSizeLabel.setText("Bit size :");
 
         javax.swing.GroupLayout rsaPanelLayout = new javax.swing.GroupLayout(rsaPanel);
         rsaPanel.setLayout(rsaPanelLayout);
         rsaPanelLayout.setHorizontalGroup(
             rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(encodingNav1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rsaNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rsaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rsaPublicKey)
+                    .addComponent(rsaTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(publicKey, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                    .addComponent(privateKey)
                     .addGroup(rsaPanelLayout.createSequentialGroup()
                         .addGroup(rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rsaPublicKeyLabel)
-                            .addComponent(generateRsaButton))
-                        .addGap(0, 1033, Short.MAX_VALUE)))
+                            .addComponent(publicKeyLabel)
+                            .addComponent(privateKeyLabel)
+                            .addComponent(rsaBitSizeLabel)
+                            .addGroup(rsaPanelLayout.createSequentialGroup()
+                                .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(generateRsa)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         rsaPanelLayout.setVerticalGroup(
             rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rsaPanelLayout.createSequentialGroup()
-                .addComponent(encodingNav1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(303, 303, 303)
-                .addComponent(generateRsaButton)
-                .addGap(70, 70, 70)
-                .addComponent(rsaPublicKeyLabel)
+                .addComponent(rsaNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rsaTitle)
+                .addGap(29, 29, 29)
+                .addComponent(rsaBitSizeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rsaPublicKey, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateRsa)
+                    .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(privateKeyLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(privateKey, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(publicKeyLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(publicKey, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        mainPanel.add(rsaPanel, "card4");
+        mainPanel.add(rsaPanel, "card5");
 
         main.add(mainPanel, java.awt.BorderLayout.CENTER);
+
+        topNav.setBackground(new java.awt.Color(22, 148, 161));
+        topNav.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                topNavMouseDragged(evt);
+            }
+        });
+        topNav.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                topNavMousePressed(evt);
+            }
+        });
+
+        exitButton.setBackground(new java.awt.Color(255, 96, 92));
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitButton.setPreferredSize(new java.awt.Dimension(15, 15));
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                index.this.mouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout exitButtonLayout = new javax.swing.GroupLayout(exitButton);
+        exitButton.setLayout(exitButtonLayout);
+        exitButtonLayout.setHorizontalGroup(
+            exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+        exitButtonLayout.setVerticalGroup(
+            exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 14, Short.MAX_VALUE)
+        );
+
+        maximizeButton.setBackground(new java.awt.Color(255, 189, 68));
+        maximizeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maximizeButton.setPreferredSize(new java.awt.Dimension(15, 15));
+        maximizeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                index.this.mouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout maximizeButtonLayout = new javax.swing.GroupLayout(maximizeButton);
+        maximizeButton.setLayout(maximizeButtonLayout);
+        maximizeButtonLayout.setHorizontalGroup(
+            maximizeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+        maximizeButtonLayout.setVerticalGroup(
+            maximizeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 14, Short.MAX_VALUE)
+        );
+
+        minimizeButton.setBackground(new java.awt.Color(0, 202, 72));
+        minimizeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimizeButton.setPreferredSize(new java.awt.Dimension(15, 15));
+        minimizeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                index.this.mouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout minimizeButtonLayout = new javax.swing.GroupLayout(minimizeButton);
+        minimizeButton.setLayout(minimizeButtonLayout);
+        minimizeButtonLayout.setHorizontalGroup(
+            minimizeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+        minimizeButtonLayout.setVerticalGroup(
+            minimizeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 14, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout topNavLayout = new javax.swing.GroupLayout(topNav);
+        topNav.setLayout(topNavLayout);
+        topNavLayout.setHorizontalGroup(
+            topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavLayout.createSequentialGroup()
+                .addContainerGap(876, Short.MAX_VALUE)
+                .addComponent(minimizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(maximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        topNavLayout.setVerticalGroup(
+            topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(minimizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        main.add(topNav, java.awt.BorderLayout.PAGE_START);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(943, 747));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -687,6 +885,22 @@ public class index extends javax.swing.JFrame {
         }
         if(evt.getSource()==exit){
             System.exit(0);
+        }
+        if(evt.getSource()==minimizeButton){
+            this.setExtendedState(index.ICONIFIED);
+        }
+        if(evt.getSource()==maximizeButton){
+            if(this.getExtendedState() != index.MAXIMIZED_BOTH){
+                this.setExtendedState(index.MAXIMIZED_BOTH);
+            }else{
+                this.setExtendedState(index.NORMAL);
+            }
+        }
+        if(evt.getSource()==exitButton){
+            int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "Exit Box", JOptionPane.YES_NO_OPTION);
+            if (confirmed == JOptionPane.YES_OPTION) {
+                dispose();
+            }
         }
     }//GEN-LAST:event_mouseClicked
 
@@ -730,57 +944,10 @@ public class index extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hashComboBoxActionPerformed
 
-    private void encodingComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encodingComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_encodingComboBoxActionPerformed
-
-    private void encodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encodeButtonActionPerformed
-        int encodingComboBoxValue = encodingComboBox.getSelectedIndex();
-        String encodingPlainText = encodingInputArea.getText();
-        switch(encodingComboBoxValue){
-            case 0:
-                byte[] base64Bytes = Base64.getEncoder().encode(encodingPlainText.getBytes());
-                encodingOutputArea.setText(new String(base64Bytes));
-                break;
-            case 1:
-                String base32Bytes = BaseEncoding.base32().encode(encodingPlainText.getBytes(Charsets.US_ASCII));
-                encodingOutputArea.setText(base32Bytes);
-                break;
-            case 2:
-                
-                break;
-            case 3:
-                String base16Bytes = BaseEncoding.base16().encode(encodingPlainText.getBytes(Charsets.US_ASCII)).toLowerCase();
-                encodingOutputArea.setText("0x" + base16Bytes);
-                break;
-            case 6:
-                String text = encodingPlainText;
-                int s = 13;
-                StringBuffer result= new StringBuffer(); 
-                for(int i=0; i < text.length(); i++){
-                    if(text.charAt(i)==' '){
-                        result.append(' ');
-                        continue;
-                    }
-
-                    if (Character.isUpperCase(text.charAt(i))){ 
-                        char ch = (char)(((int)text.charAt(i) + 
-                                          s - 65) % 26 + 65); 
-                        result.append(ch); 
-                    } 
-                    else{ 
-                        char ch = (char)(((int)text.charAt(i) + s - 97) % 26 + 97); 
-                        result.append(ch); 
-                    } 
-                } 
-                encodingOutputArea.setText(new String(result));
-        }
-    }//GEN-LAST:event_encodeButtonActionPerformed
-
     private void hashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hashButtonActionPerformed
-        int hashComboBoxValue = hashComboBox.getSelectedIndex();
+        int hashComboBoxIndex = hashComboBox.getSelectedIndex();
         String hashPlainText = hashInputArea.getText();
-        switch(hashComboBoxValue){
+        switch(hashComboBoxIndex){
             case 0:
                 try { 
                     MessageDigest md = MessageDigest.getInstance("MD5");
@@ -879,27 +1046,151 @@ public class index extends javax.swing.JFrame {
         int s = (Integer) shift.getValue();
         StringBuffer result= new StringBuffer(); 
         for(int i=0; i < text.length(); i++){
-            if(text.charAt(i)==' '){
-                result.append(' ');
+            if((int)text.charAt(i) < 65 || (int)text.charAt(i) > 122){
+                result.append(text.charAt(i));
                 continue;
             }
-            
-            if (Character.isUpperCase(text.charAt(i))){ 
-                char ch = (char)(((int)text.charAt(i) + 
-                                  s - 65) % 26 + 65); 
+            if((int)text.charAt(i) < 97 && (int)text.charAt(i) > 90){
+                result.append(text.charAt(i));
+                continue;
+            }
+            if(Character.isUpperCase(text.charAt(i))){ 
+                char ch = (char)(((int)text.charAt(i) + s - 65) % 26 + 65); 
                 result.append(ch); 
             } 
             else{ 
                 char ch = (char)(((int)text.charAt(i) + s - 97) % 26 + 97); 
                 result.append(ch); 
-            } 
-        } 
+            }
+        }
         caesarOutputArea.setText(new String(result)); 
     }//GEN-LAST:event_encryptButtonActionPerformed
 
-    private void generateRsaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateRsaButtonActionPerformed
+    private void encodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encodeButtonActionPerformed
+        int encodingComboBoxValue = encodingComboBox.getSelectedIndex();
+        String encodingPlainText = encodingInputArea.getText();
+        switch(encodingComboBoxValue){
+            case 0:
+                byte[] base64Bytes = Base64.getEncoder().encode(encodingPlainText.getBytes());
+                encodingOutputArea.setText(new String(base64Bytes));
+                break;
+            case 1:
+                String base32Bytes = BaseEncoding.base32().encode(encodingPlainText.getBytes(Charsets.US_ASCII));
+                encodingOutputArea.setText(base32Bytes);
+                break;
+            case 2:
+                char[] ascii = encodingPlainText.toCharArray();
+                StringBuffer asciiValue = new StringBuffer();
+                for(int ch:ascii){
+                    ch = (int)ch;
+                    asciiValue.append(ch).append(" ");
+                }
+                encodingOutputArea.setText(new String(asciiValue));
+                break;
+            case 3:
+                String base16Bytes = BaseEncoding.base16().encode(encodingPlainText.getBytes(Charsets.US_ASCII)).toLowerCase();
+                encodingOutputArea.setText(base16Bytes.replaceAll("..", "$0 ")); // Regex buat split tiap 2 karakter
+                break;
+            case 4:
+                char[] octal = encodingPlainText.toCharArray();
+                StringBuffer octalValue = new StringBuffer();
+                for(int ch:octal){
+                    ch = (int)ch;
+                    octalValue.append(Integer.toOctalString(ch)).append(" ");
+                }
+                encodingOutputArea.setText(new String(octalValue));
+                break;
+            case 5:
+                char[] binary = encodingPlainText.toCharArray();
+                StringBuffer binaryValue = new StringBuffer();
+                for(int ch:binary){
+                    ch = (int)ch;
+                    binaryValue.append(Integer.toBinaryString(ch)).append(" ");
+                }
+                encodingOutputArea.setText(new String(binaryValue));
+                break;
+            case 6:
+                String text = encodingPlainText;
+                int s = 13;
+                StringBuffer result= new StringBuffer();
+                for(int i=0; i < text.length(); i++){
+                    if((int)text.charAt(i) < 65 || (int)text.charAt(i) > 122){
+                        result.append(text.charAt(i));
+                        continue;
+                    }
+                    if((int)text.charAt(i) < 97 && (int)text.charAt(i) > 90){
+                        result.append(text.charAt(i));
+                        continue;
+                    }
+                    if(Character.isUpperCase(text.charAt(i))){ 
+                        char ch = (char)(((int)text.charAt(i) + s - 65) % 26 + 65); 
+                        result.append(ch); 
+                    } 
+                    else{ 
+                        char ch = (char)(((int)text.charAt(i) + s - 97) % 26 + 97); 
+                        result.append(ch); 
+                    }
+                }
+                encodingOutputArea.setText(new String(result));
+                break;
+        }
+    }//GEN-LAST:event_encodeButtonActionPerformed
+
+    private void encodingComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encodingComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_generateRsaButtonActionPerformed
+    }//GEN-LAST:event_encodingComboBoxActionPerformed
+
+    private void generateRsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateRsaActionPerformed
+        try {
+            int bitSizeComboBoxIndex = rsaBitSize.getSelectedIndex();
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+            String privateKey, publicKey, privateHead, privateBody, privateFoot, publicHead, publicBody, publicFoot;
+            KeyPair kp;
+            int bitSize;
+            switch(bitSizeComboBoxIndex){
+                case 0:
+                    bitSize = 1024;
+                    break;
+                case 1:
+                    bitSize = 2048;
+                    break;
+                case 2:
+                    bitSize = 4096;
+                    break;
+                default:
+                    bitSize = 2048;
+                    break;
+            }
+            kpg.initialize(bitSize); 
+            kp = kpg.generateKeyPair();
+            
+            privateHead = "-----BEGIN PRIVATE KEY-----";
+            privateBody = Base64.getMimeEncoder().encodeToString(kp.getPrivate().getEncoded());
+            privateFoot = "-----END PRIVATE KEY-----";
+            privateKey = privateHead + "\n" + privateBody + "\n" + privateFoot;
+            privateKeyArea.setText(privateKey);
+            
+            publicHead = "-----BEGIN PUBLIC KEY-----";
+            publicBody = Base64.getMimeEncoder().encodeToString(kp.getPublic().getEncoded());
+            publicFoot = "-----END PUBLIC KEY-----";
+            publicKey = publicHead + "\n" + publicBody + "\n" + publicFoot;
+            publicKeyArea.setText(publicKey);
+
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generateRsaActionPerformed
+
+    private void topNavMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topNavMouseDragged
+        int kordinatX = evt.getXOnScreen();
+        int kordinatY = evt.getYOnScreen();
+        this.setLocation(kordinatX - mouseX, kordinatY - mouseY);
+    }//GEN-LAST:event_topNavMouseDragged
+
+    private void topNavMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topNavMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_topNavMousePressed
     
     /**
      * @param args the command line arguments
@@ -943,30 +1234,31 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel caesarInputLabel;
     private javax.swing.JLabel caesarLabel;
     private javax.swing.JPanel caesarNav;
+    private javax.swing.JLabel caesarNavTitle;
     private javax.swing.JScrollPane caesarOutput;
     private javax.swing.JTextArea caesarOutputArea;
     private javax.swing.JLabel caesarOutputLabel;
     private javax.swing.JPanel caesarPanel;
+    private javax.swing.JLabel caesarTitle;
     private javax.swing.JButton encodeButton;
     private javax.swing.JPanel encoding;
-    private javax.swing.JPanel encoding1;
     private javax.swing.JComboBox<String> encodingComboBox;
     private javax.swing.JScrollPane encodingInput;
     private javax.swing.JTextArea encodingInputArea;
     private javax.swing.JLabel encodingInputLabel;
     private javax.swing.JLabel encodingLabel;
-    private javax.swing.JLabel encodingLabel1;
     private javax.swing.JPanel encodingNav;
-    private javax.swing.JPanel encodingNav1;
+    private javax.swing.JLabel encodingNavTitle;
+    private javax.swing.JLabel encodingNavTitle1;
     private javax.swing.JScrollPane encodingOutput;
     private javax.swing.JTextArea encodingOutputArea;
-    private javax.swing.JTextArea encodingOutputArea1;
     private javax.swing.JLabel encodingOutputLabel;
     private javax.swing.JPanel encodingPanel;
     private javax.swing.JButton encryptButton;
     private javax.swing.JPanel exit;
+    private javax.swing.JPanel exitButton;
     private javax.swing.JLabel exitLabel;
-    private javax.swing.JButton generateRsaButton;
+    private javax.swing.JButton generateRsa;
     private javax.swing.JButton hashButton;
     private javax.swing.JComboBox<String> hashComboBox;
     private javax.swing.JScrollPane hashInput;
@@ -974,6 +1266,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel hashInputLabel;
     private javax.swing.JLabel hashLabel;
     private javax.swing.JPanel hashNav;
+    private javax.swing.JLabel hashNavTitle;
     private javax.swing.JScrollPane hashOutput;
     private javax.swing.JTextArea hashOutputArea;
     private javax.swing.JLabel hashOutputLabel;
@@ -981,16 +1274,27 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel hashingPanel;
     private javax.swing.JPanel main;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel maximizeButton;
+    private javax.swing.JPanel minimizeButton;
+    private javax.swing.JScrollPane privateKey;
+    private javax.swing.JTextArea privateKeyArea;
+    private javax.swing.JLabel privateKeyLabel;
+    private javax.swing.JScrollPane publicKey;
+    private javax.swing.JTextArea publicKeyArea;
+    private javax.swing.JLabel publicKeyLabel;
     private javax.swing.JPanel rsa;
+    private javax.swing.JComboBox<String> rsaBitSize;
+    private javax.swing.JLabel rsaBitSizeLabel;
     private javax.swing.JLabel rsaLabel;
+    private javax.swing.JPanel rsaNav;
     private javax.swing.JPanel rsaPanel;
-    private javax.swing.JScrollPane rsaPublicKey;
-    private javax.swing.JLabel rsaPublicKeyLabel;
+    private javax.swing.JLabel rsaTitle;
     private javax.swing.JLabel selectEncodingLabel;
     private javax.swing.JLabel selectHashLabel;
     private javax.swing.JSpinner shift;
     private javax.swing.JLabel shiftLabel;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel title;
+    private javax.swing.JPanel topNav;
     // End of variables declaration//GEN-END:variables
 }
