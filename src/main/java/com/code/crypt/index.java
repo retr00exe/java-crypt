@@ -48,8 +48,8 @@ public class index extends javax.swing.JFrame {
         encodingLabel = new javax.swing.JLabel();
         rsa = new javax.swing.JPanel();
         rsaLabel = new javax.swing.JLabel();
-        exit = new javax.swing.JPanel();
-        exitLabel = new javax.swing.JLabel();
+        about = new javax.swing.JPanel();
+        aboutSideLabel = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         caesarPanel = new javax.swing.JPanel();
@@ -77,6 +77,7 @@ public class index extends javax.swing.JFrame {
         hashNavTitle = new javax.swing.JLabel();
         hashComboBox = new javax.swing.JComboBox<>();
         hashButton = new javax.swing.JButton();
+        hashTitle = new javax.swing.JLabel();
         encodingPanel = new javax.swing.JPanel();
         selectEncodingLabel = new javax.swing.JLabel();
         encodingInput = new javax.swing.JScrollPane();
@@ -89,6 +90,7 @@ public class index extends javax.swing.JFrame {
         encodingNavTitle = new javax.swing.JLabel();
         encodingComboBox = new javax.swing.JComboBox<>();
         encodeButton = new javax.swing.JButton();
+        encodeTitle = new javax.swing.JLabel();
         rsaPanel = new javax.swing.JPanel();
         rsaNav = new javax.swing.JPanel();
         encodingNavTitle1 = new javax.swing.JLabel();
@@ -102,6 +104,13 @@ public class index extends javax.swing.JFrame {
         publicKeyLabel = new javax.swing.JLabel();
         rsaBitSize = new javax.swing.JComboBox<>();
         rsaBitSizeLabel = new javax.swing.JLabel();
+        aboutPanel = new javax.swing.JPanel();
+        aboutNav = new javax.swing.JPanel();
+        aboutNavTitle = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         topNav = new javax.swing.JPanel();
         exitButton = new javax.swing.JPanel();
         maximizeButton = new javax.swing.JPanel();
@@ -253,9 +262,9 @@ public class index extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        exit.setBackground(new java.awt.Color(21, 199, 203));
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+        about.setBackground(new java.awt.Color(21, 199, 203));
+        about.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        about.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 index.this.mouseClicked(evt);
             }
@@ -267,22 +276,22 @@ public class index extends javax.swing.JFrame {
             }
         });
 
-        exitLabel.setFont(new java.awt.Font("Source Code Pro Medium", 0, 14)); // NOI18N
-        exitLabel.setForeground(new java.awt.Color(255, 255, 255));
-        exitLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exitLabel.setText("Exit");
+        aboutSideLabel.setFont(new java.awt.Font("Source Code Pro Medium", 0, 14)); // NOI18N
+        aboutSideLabel.setForeground(new java.awt.Color(255, 255, 255));
+        aboutSideLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aboutSideLabel.setText("About");
 
-        javax.swing.GroupLayout exitLayout = new javax.swing.GroupLayout(exit);
-        exit.setLayout(exitLayout);
-        exitLayout.setHorizontalGroup(
-            exitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exitLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout aboutLayout = new javax.swing.GroupLayout(about);
+        about.setLayout(aboutLayout);
+        aboutLayout.setHorizontalGroup(
+            aboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(aboutSideLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        exitLayout.setVerticalGroup(
-            exitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(exitLayout.createSequentialGroup()
+        aboutLayout.setVerticalGroup(
+            aboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(exitLabel)
+                .addComponent(aboutSideLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -295,7 +304,7 @@ public class index extends javax.swing.JFrame {
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(about, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(caesar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(hashing, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(encoding, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -319,7 +328,7 @@ public class index extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(rsa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(about, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         main.add(sidebar, java.awt.BorderLayout.LINE_START);
@@ -491,6 +500,10 @@ public class index extends javax.swing.JFrame {
             }
         });
 
+        hashTitle.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        hashTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hashTitle.setText("Hash Function");
+
         javax.swing.GroupLayout hashingPanelLayout = new javax.swing.GroupLayout(hashingPanel);
         hashingPanel.setLayout(hashingPanelLayout);
         hashingPanelLayout.setHorizontalGroup(
@@ -508,14 +521,17 @@ public class index extends javax.swing.JFrame {
                             .addComponent(selectHashLabel)
                             .addComponent(hashInputLabel)
                             .addComponent(hashButton))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(hashTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         hashingPanelLayout.setVerticalGroup(
             hashingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hashingPanelLayout.createSequentialGroup()
                 .addComponent(hashNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
+                .addComponent(hashTitle)
+                .addGap(28, 28, 28)
                 .addComponent(selectHashLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hashComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -529,7 +545,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(hashOutputLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hashOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         mainPanel.add(hashingPanel, "card3");
@@ -578,7 +594,7 @@ public class index extends javax.swing.JFrame {
         );
 
         encodingComboBox.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        encodingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Base64", "Base32", "ASCII", "Hex", "Octal", "Binary", "ROT-13" }));
+        encodingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Base64", "Base32", "ASCII", "Hex", "Octal", "Binary", "ROT-13", "Reverse" }));
         encodingComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 encodingComboBoxActionPerformed(evt);
@@ -593,6 +609,10 @@ public class index extends javax.swing.JFrame {
                 encodeButtonActionPerformed(evt);
             }
         });
+
+        encodeTitle.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        encodeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        encodeTitle.setText("Encode");
 
         javax.swing.GroupLayout encodingPanelLayout = new javax.swing.GroupLayout(encodingPanel);
         encodingPanel.setLayout(encodingPanelLayout);
@@ -611,14 +631,17 @@ public class index extends javax.swing.JFrame {
                             .addComponent(encodingInputLabel)
                             .addComponent(encodeButton)
                             .addComponent(encodingComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(encodeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         encodingPanelLayout.setVerticalGroup(
             encodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(encodingPanelLayout.createSequentialGroup()
                 .addComponent(encodingNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
+                .addComponent(encodeTitle)
+                .addGap(28, 28, 28)
                 .addComponent(selectEncodingLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(encodingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -632,7 +655,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(encodingOutputLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(encodingOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         mainPanel.add(encodingPanel, "card4");
@@ -742,6 +765,78 @@ public class index extends javax.swing.JFrame {
         );
 
         mainPanel.add(rsaPanel, "card5");
+
+        aboutPanel.setBackground(new java.awt.Color(225, 227, 226));
+
+        aboutNav.setBackground(new java.awt.Color(21, 199, 203));
+
+        aboutNavTitle.setFont(new java.awt.Font("Source Code Pro Medium", 1, 14)); // NOI18N
+        aboutNavTitle.setForeground(new java.awt.Color(255, 255, 255));
+        aboutNavTitle.setText("About");
+
+        javax.swing.GroupLayout aboutNavLayout = new javax.swing.GroupLayout(aboutNav);
+        aboutNav.setLayout(aboutNavLayout);
+        aboutNavLayout.setHorizontalGroup(
+            aboutNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutNavLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(aboutNavTitle)
+                .addContainerGap(741, Short.MAX_VALUE))
+        );
+        aboutNavLayout.setVerticalGroup(
+            aboutNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutNavLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(aboutNavTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Pemrograman Berorientasi Objek - Kelas B");
+
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Erandri Mekel Ilyasa - 21120119130108");
+
+        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("GitHub link : github.com/retr00exe/java-crypt");
+
+        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Syekh Seif' Izzul Khaq - 21120119130080 ");
+
+        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
+        aboutPanel.setLayout(aboutPanelLayout);
+        aboutPanelLayout.setHorizontalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(aboutNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        aboutPanelLayout.setVerticalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addComponent(aboutNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel3)
+                .addContainerGap(493, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(aboutPanel, "card5");
 
         main.add(mainPanel, java.awt.BorderLayout.CENTER);
 
@@ -864,27 +959,35 @@ public class index extends javax.swing.JFrame {
             hashingPanel.setVisible(false);
             encodingPanel.setVisible(false);
             rsaPanel.setVisible(false);
+            aboutPanel.setVisible(false);
         }
         if(evt.getSource()==hashing){
             caesarPanel.setVisible(false);
             hashingPanel.setVisible(true);
             encodingPanel.setVisible(false);
             rsaPanel.setVisible(false);
+            aboutPanel.setVisible(false);
         }
         if(evt.getSource()==encoding){
             caesarPanel.setVisible(false);
             hashingPanel.setVisible(false);
             encodingPanel.setVisible(true);
             rsaPanel.setVisible(false);
+            aboutPanel.setVisible(false);
         }
         if(evt.getSource()==rsa){
             caesarPanel.setVisible(false);
             hashingPanel.setVisible(false);
             encodingPanel.setVisible(false);
             rsaPanel.setVisible(true);
+            aboutPanel.setVisible(false);
         }
-        if(evt.getSource()==exit){
-            System.exit(0);
+        if(evt.getSource()==about){
+            caesarPanel.setVisible(false);
+            hashingPanel.setVisible(false);
+            encodingPanel.setVisible(false);
+            rsaPanel.setVisible(false);
+            aboutPanel.setVisible(true);
         }
         if(evt.getSource()==minimizeButton){
             this.setExtendedState(index.ICONIFIED);
@@ -917,8 +1020,8 @@ public class index extends javax.swing.JFrame {
         if(evt.getSource()==rsa){
             rsa.setBackground(new Color(22, 148, 161));
         }
-        if(evt.getSource()==exit){
-            exit.setBackground(new Color(22, 148, 161));
+        if(evt.getSource()==about){
+            about.setBackground(new Color(22, 148, 161));
         }
     }//GEN-LAST:event_mouseEntered
 
@@ -935,8 +1038,8 @@ public class index extends javax.swing.JFrame {
         if(evt.getSource()==rsa){
             rsa.setBackground(new Color(21, 199, 203));
         }
-        if(evt.getSource()==exit){
-            exit.setBackground(new Color(21, 199, 203));
+        if(evt.getSource()==about){
+            about.setBackground(new Color(21, 199, 203));
         }
     }//GEN-LAST:event_mouseExited
 
@@ -1133,6 +1236,14 @@ public class index extends javax.swing.JFrame {
                 }
                 encodingOutputArea.setText(new String(result));
                 break;
+            case 7:
+                String input = encodingPlainText;
+                byte[] strAsByteArray = input.getBytes();
+                byte[] reverse = new byte[strAsByteArray.length];
+                for (int i = 0; i < strAsByteArray.length; i++){
+                    reverse[i] = strAsByteArray[strAsByteArray.length - i - 1];
+                }
+                encodingOutputArea.setText(new String(reverse));
         }
     }//GEN-LAST:event_encodeButtonActionPerformed
 
@@ -1164,15 +1275,15 @@ public class index extends javax.swing.JFrame {
             kpg.initialize(bitSize); 
             kp = kpg.generateKeyPair();
             
-            privateHead = "-----BEGIN PRIVATE KEY-----";
+            privateHead = "-----BEGIN RSA PRIVATE KEY-----";
             privateBody = Base64.getMimeEncoder().encodeToString(kp.getPrivate().getEncoded());
-            privateFoot = "-----END PRIVATE KEY-----";
+            privateFoot = "-----END RSA PRIVATE KEY-----";
             privateKey = privateHead + "\n" + privateBody + "\n" + privateFoot;
             privateKeyArea.setText(privateKey);
             
-            publicHead = "-----BEGIN PUBLIC KEY-----";
+            publicHead = "-----BEGIN RSA PUBLIC KEY-----";
             publicBody = Base64.getMimeEncoder().encodeToString(kp.getPublic().getEncoded());
-            publicFoot = "-----END PUBLIC KEY-----";
+            publicFoot = "-----END RSA PUBLIC KEY-----";
             publicKey = publicHead + "\n" + publicBody + "\n" + publicFoot;
             publicKeyArea.setText(publicKey);
 
@@ -1228,6 +1339,11 @@ public class index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel about;
+    private javax.swing.JPanel aboutNav;
+    private javax.swing.JLabel aboutNavTitle;
+    private javax.swing.JPanel aboutPanel;
+    private javax.swing.JLabel aboutSideLabel;
     private javax.swing.JPanel caesar;
     private javax.swing.JScrollPane caesarInput;
     private javax.swing.JTextArea caesarInputArea;
@@ -1241,6 +1357,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel caesarPanel;
     private javax.swing.JLabel caesarTitle;
     private javax.swing.JButton encodeButton;
+    private javax.swing.JLabel encodeTitle;
     private javax.swing.JPanel encoding;
     private javax.swing.JComboBox<String> encodingComboBox;
     private javax.swing.JScrollPane encodingInput;
@@ -1255,9 +1372,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel encodingOutputLabel;
     private javax.swing.JPanel encodingPanel;
     private javax.swing.JButton encryptButton;
-    private javax.swing.JPanel exit;
     private javax.swing.JPanel exitButton;
-    private javax.swing.JLabel exitLabel;
     private javax.swing.JButton generateRsa;
     private javax.swing.JButton hashButton;
     private javax.swing.JComboBox<String> hashComboBox;
@@ -1270,8 +1385,13 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JScrollPane hashOutput;
     private javax.swing.JTextArea hashOutputArea;
     private javax.swing.JLabel hashOutputLabel;
+    private javax.swing.JLabel hashTitle;
     private javax.swing.JPanel hashing;
     private javax.swing.JPanel hashingPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel main;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel maximizeButton;
