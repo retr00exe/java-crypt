@@ -997,13 +997,15 @@
                                       <Component id="publicKeyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="privateKeyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="rsaBitSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="rsaBitSize" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="generateRsa" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="rsaBitSize" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="generateRsa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="genTime" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1022,11 +1024,12 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="generateRsa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rsaBitSize" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="genTime" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="privateKeyLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="privateKey" pref="318" max="32767" attributes="0"/>
+                          <Component id="privateKey" pref="324" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="publicKeyLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1168,6 +1171,13 @@
                       <Font name="Roboto Medium" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bit size :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="genTime">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto Medium" size="14" style="0"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

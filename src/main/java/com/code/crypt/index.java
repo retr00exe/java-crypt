@@ -104,6 +104,7 @@ public class index extends javax.swing.JFrame {
         publicKeyLabel = new javax.swing.JLabel();
         rsaBitSize = new javax.swing.JComboBox<>();
         rsaBitSizeLabel = new javax.swing.JLabel();
+        genTime = new javax.swing.JLabel();
         aboutPanel = new javax.swing.JPanel();
         aboutNav = new javax.swing.JPanel();
         aboutNavTitle = new javax.swing.JLabel();
@@ -718,6 +719,8 @@ public class index extends javax.swing.JFrame {
         rsaBitSizeLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         rsaBitSizeLabel.setText("Bit size :");
 
+        genTime.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout rsaPanelLayout = new javax.swing.GroupLayout(rsaPanel);
         rsaPanel.setLayout(rsaPanelLayout);
         rsaPanelLayout.setHorizontalGroup(
@@ -733,12 +736,14 @@ public class index extends javax.swing.JFrame {
                         .addGroup(rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(publicKeyLabel)
                             .addComponent(privateKeyLabel)
-                            .addComponent(rsaBitSizeLabel)
-                            .addGroup(rsaPanelLayout.createSequentialGroup()
-                                .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(generateRsa)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(rsaBitSizeLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(rsaPanelLayout.createSequentialGroup()
+                        .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(generateRsa)
+                        .addGap(18, 18, 18)
+                        .addComponent(genTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         rsaPanelLayout.setVerticalGroup(
@@ -752,11 +757,12 @@ public class index extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rsaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generateRsa)
-                    .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rsaBitSize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(privateKeyLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(privateKey, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(privateKey, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(publicKeyLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1050,97 +1056,39 @@ public class index extends javax.swing.JFrame {
     private void hashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hashButtonActionPerformed
         int hashComboBoxIndex = hashComboBox.getSelectedIndex();
         String hashPlainText = hashInputArea.getText();
+        String hashAlgorithm = null;
         switch(hashComboBoxIndex){
             case 0:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("MD5");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "MD5";
                 break;
             case 1:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("SHA-1");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "SHA-1";
                 break;
             case 2:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("SHA-224");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "SHA-224";
                 break;
             case 3:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("SHA-256");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "SHA-256";
                 break;
             case 4:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("SHA-384");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "SHA-384";
                 break;
             case 5:
-                try { 
-                    MessageDigest md = MessageDigest.getInstance("SHA-512");
-                    byte[] messageDigest = md.digest(hashPlainText.getBytes());
-                    BigInteger no = new BigInteger(1, messageDigest);
-                    String hashtext = no.toString(16);
-                    while (hashtext.length() < 32) {
-                        hashtext = "0" + hashtext;
-                    }
-                    hashOutputArea.setText(hashtext);
-                }
-                catch (NoSuchAlgorithmException e) { 
-                    throw new RuntimeException(e); 
-                }
+                hashAlgorithm = "SHA-512";
                 break;
+        }    
+        try{ 
+            MessageDigest md = MessageDigest.getInstance(hashAlgorithm);
+            byte[] messageDigest = md.digest(hashPlainText.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            hashOutputArea.setText(hashtext);
+        }
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
         }
     }//GEN-LAST:event_hashButtonActionPerformed
 
@@ -1257,7 +1205,7 @@ public class index extends javax.swing.JFrame {
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
             String privateKey, publicKey, privateHead, privateBody, privateFoot, publicHead, publicBody, publicFoot;
             KeyPair kp;
-            int bitSize;
+            int bitSize = 0;
             switch(bitSizeComboBoxIndex){
                 case 0:
                     bitSize = 1024;
@@ -1268,12 +1216,13 @@ public class index extends javax.swing.JFrame {
                 case 2:
                     bitSize = 4096;
                     break;
-                default:
-                    bitSize = 2048;
-                    break;
             }
             kpg.initialize(bitSize); 
+            long startTime = System.currentTimeMillis();
             kp = kpg.generateKeyPair();
+            long endTime = System.currentTimeMillis();
+            float duration = (endTime - startTime)/1000F;
+            genTime.setText("Key generated in " + Float.toString(duration) + " second");
             
             privateHead = "-----BEGIN RSA PRIVATE KEY-----";
             privateBody = Base64.getMimeEncoder().encodeToString(kp.getPrivate().getEncoded());
@@ -1373,6 +1322,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel encodingPanel;
     private javax.swing.JButton encryptButton;
     private javax.swing.JPanel exitButton;
+    private javax.swing.JLabel genTime;
     private javax.swing.JButton generateRsa;
     private javax.swing.JButton hashButton;
     private javax.swing.JComboBox<String> hashComboBox;
